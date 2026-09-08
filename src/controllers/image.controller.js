@@ -8,7 +8,7 @@ const getImages = (req, res) => {
     "/images/img6.jpg",
     "/images/img7.jpg",
     "/images/img8.jpg",
-    "/images/img9.jpg",
+    "/images/img9.jpeg",
     "/images/img10.jpg",
   ];
 
