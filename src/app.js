@@ -1,27 +1,28 @@
 const express = require("express");
+const path = require("path");
+
+const propertyRoutes = require("./routes/property.routes");
 
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.get("/", (req, res) => {
-  res.json({
-    message: "Server is running 🚀",
-  });
-});
+// Serve images
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "images"))
+);
 
-// 404 handler
+app.use("/", propertyRoutes);
+
 app.use((req, res) => {
   res.status(404).json({
     message: "Route not found",
   });
 });
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
