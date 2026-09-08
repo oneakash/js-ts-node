@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- Black Background -->
+  <rect width="100%" height="100%" fill="#203527" />
+
+  <!-- Scale/Leaf Pattern Definition -->
+  <defs>
+    <!-- Creates a rotated 'D' shape to match the textured scales inside the droplet -->
+    <path id="scale" d="M 0 0 L 7 7 A 5 5 0 0 1 0 0 Z" fill="#ffffff" />
+  </defs>
+
+  <!-- Main House and Droplet Line -->
+  <path 
+    d="M 30 90 
+       L 60 65 
+       L 60 47 
+       L 68 47 
+       L 68 58 
+       L 96 35 
+       Q 100 31 104 35 
+       L 165 85 
+       C 175 93 175 100 160 100 
+       L 100 100 
+       A 35 35 0 1 0 125 110" 
+    stroke="#ffffff" 
+    stroke-width="5" 
+    fill="none" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+  />
+
+  <!-- Internal Textured Pattern (Bottom Left of Circle) -->
+  <g>
+    <!-- Row 1 -->
+    <use href="#scale" x="93" y="115" />
+    <use href="#scale" x="103" y="115" />
+    
+    <!-- Row 2 -->
+    <use href="#scale" x="88" y="122" />
+    <use href="#scale" x="98" y="122" />
+    <use href="#scale" x="108" y="122" />
+    
+    <!-- Row 3 -->
+    <use href="#scale" x="83" y="129" />
+    <use href="#scale" x="93" y="129" />
+    <use href="#scale" x="103" y="129" />
+    
+    <!-- Row 4 -->
+    <use href="#scale" x="78" y="136" />
+    <use href="#scale" x="88" y="136" />
+    <use href="#scale" x="98" y="136" />
+    
+    <!-- Row 5 -->
+    <use href="#scale" x="73" y="143" />
+    <use href="#scale" x="83" y="143" />
+    <use href="#scale" x="93" y="143" />
+    
+    <!-- Row 6 -->
+    <use href="#scale" x="78" y="150" />
+    <use href="#scale" x="88" y="150" />
+    
+    <!-- Row 7 -->
+    <use href="#scale" x="83" y="157" />
+  </g>
+</svg>

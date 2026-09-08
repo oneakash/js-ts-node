@@ -1,0 +1,370 @@
+/* =========================================
+   Parent Layout & Sticky Sidebar Logic
+   ========================================= */
+.listing-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 28px;
+  align-items: start; /* Crucial for sticky behavior */
+}
+
+.booking-sidebar {
+  position: sticky;
+  top: 96px; /* Sits below the sticky header in desktop view */
+}
+
+/* =========================================
+   Perfect Stay Section (Desktop First)
+   ========================================= */
+.perfect-stay-section h2 {
+  font-size: 1.7rem;
+  margin-top: 32px;
+  margin-bottom: 18px;
+}
+
+.stay-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto; /* Allows horizontal scrolling on small screens */
+  padding-bottom: 5px;
+}
+
+.stay-filters select {
+  padding: 8px 16px;
+  border: 1px solid var(--border-color, var(--color-border));
+  border-radius: 20px;
+  background: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Layout: Cards vs Map */
+.stay-content-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 252px;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Property Grid */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.property-card {
+  border: 1px solid var(--border-color, var(--color-border));
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pc-image {
+  position: relative;
+  height: 138px;
+}
+
+.pc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pc-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 0.6rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.pc-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.icon-circle {
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.7rem;
+}
+
+.pc-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.pc-rating {
+  font-size: 0.75rem;
+  color: #555;
+  margin-bottom: 4px;
+}
+.pc-rating .star {
+  color: #4caf50;
+}
+.pc-rating strong {
+  color: #2e7d32;
+}
+
+.property-card h3 {
+  font-size: 1rem;
+  margin: 0 0 5px 0;
+}
+
+.pc-provider {
+  font-size: 0.7rem;
+  color: #777;
+}
+.pc-price {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 8px;
+}
+.pc-amenities {
+  font-size: 0.7rem;
+  color: #666;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.pc-location {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  margin-top: auto;
+}
+
+.pc-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.pc-btn-outline,
+.pc-btn-solid {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pc-btn-outline {
+  background: white;
+  border: 1px solid #ccc;
+  color: #555;
+}
+
+.pc-btn-solid {
+  background: #a2e29f;
+  border: none;
+  color: #1a5e20;
+}
+
+/* Map */
+.stay-map-wrapper {
+  height: 100%;
+}
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  min-height: 560px;
+}
+
+/* Pagination / Controls */
+.mobile-carousel-controls {
+  display: none;
+}
+.desktop-pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #777;
+}
+.desktop-pagination .page.active {
+  color: #2e7d32;
+}
+.desktop-pagination .disabled {
+  color: #ccc;
+}
+.view-all-btn-desktop {
+  margin-left: auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #777;
+  background: transparent;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* =========================================
+   TABLET VIEW (Desktop Layout, Sidebar Hidden)
+   ========================================= */
+@media (max-width: 1199px) {
+  .booking-sidebar {
+    display: none; /* Hide aside on tablet and mobile */
+  }
+
+  .listing-content {
+    grid-template-columns: 1fr;
+  }
+
+  .at-a-glance {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .gallery-side {
+    display: none;
+  }
+}
+
+/* =========================================
+   MOBILE VIEW (Map Hidden, Carousel Active)
+   ========================================= */
+@media (max-width: 768px) {
+  .stay-map-wrapper {
+    display: none; /* Hide map on mobile */
+  }
+  .stay-cards-wrapper
+
+  /* Center and size the mobile header */
+  .perfect-stay-section h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  /* Hide scrollbars on the filter row */
+  .stay-filters {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .stay-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Transform Grid into Carousel */
+  .property-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    gap: 15px;
+    padding-bottom: 10px;
+  }
+
+  .property-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .property-card {
+    flex: 0 0 100%; /* Card takes full width */
+    scroll-snap-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Soft shadow for depth */
+  }
+
+  /* Swap Pagination for Mobile Buttons */
+  .desktop-pagination {
+    display: none;
+  }
+
+  .mobile-carousel-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* Space between dots and button */
+    margin-top: 15px;
+    padding-bottom: 30px;
+  }
+
+  /* Dot indicators */
+  .carousel-dots {
+    display: flex;
+    gap: 10px;
+  }
+
+  .carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid #ccc;
+    background: transparent;
+  }
+
+  .carousel-dots .dot.active {
+    background: #a2e29f; /* Matches the "See Dates" button */
+    border-color: #a2e29f;
+  }
+
+  /* Pill-shaped View All button */
+  .view-all-btn {
+    width: auto;
+    min-width: 240px;
+    padding: 14px 24px;
+    border-radius: 30px;
+    border: 2px solid #b0b0b0;
+    color: #888;
+    background: transparent;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+  }
+}
+
+
+  /* Dot indicators */
+  .mobile-carousel-dots {
+    display: flex;
+    gap: 10px;
+  }
+
+  .mobile-carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1.5px solid #ccc;
+    background: transparent;
+  }
+
+  .mobile-carousel-dots .dot.active {
+    background: #a2e29f; /* Matches the "See Dates" button */
+    border-color: #a2e29f;
+  }

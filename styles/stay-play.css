@@ -1,0 +1,200 @@
+/* =========================================
+   Base Variables & Setup
+   ========================================= */
+:root {
+    --sp-stay-color: #4cbdd6;
+    --sp-play-color: #9cd683;
+    --sp-text-main: #111111;
+    --sp-border-color: #e2e8f0;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.stay-play-booking {
+    font-family: var(--font-sans);
+    color: var(--sp-text-main);
+    box-sizing: border-box;
+    display: none;
+}
+
+.stay-play-booking * {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   TABLET VIEW
+   ========================================= */
+   @media (max-width: 1024px) {
+.stay-play-booking {
+    display: flex;
+    gap: 20px;
+    border: 1px solid var(--sp-border-color);
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.sp-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sp-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sp-header h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.stay-card h2 { color: var(--sp-stay-color); }
+.play-card h2 { color: var(--sp-play-color); }
+
+.sp-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Soft glow effect */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sp-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.sp-body {
+    border: 1px solid var(--sp-border-color);
+    border-radius: 6px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 20px;
+}
+
+.sp-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.sp-stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.stat-val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 4px 0;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sp-divider {
+    width: 1px;
+    height: 50px;
+    background-color: var(--sp-border-color);
+}
+
+.sp-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    color: var(--sp-text-main);
+}
+
+.sp-btn:hover { opacity: 0.9; }
+.stay-btn { background-color: #7ce1f4; } /* Slightly lighter for button fill */
+.play-btn { background-color: #a4e58b; }
+
+.show-mobile { display: none; }
+
+   }
+
+/* =========================================
+   MOBILE VIEW
+   ========================================= */
+@media (max-width: 768px) {
+    .stay-play-booking {
+        flex-direction: row; /* Keep them side-by-side but compact */
+        border: none; /* Remove outer border */
+        padding: 0;
+        gap: 15px;
+    }
+
+    .sp-card {
+        border: 1px solid #d1dbd4; /* Add border to individual cards */
+        border-radius: 12px;
+        padding: 20px 10px;
+        align-items: center;
+    }
+
+    .sp-body {
+        border: none; /* Remove inner border */
+        padding: 0;
+        width: 100%;
+    }
+
+    .sp-header {
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+
+    .sp-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .sp-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .stat-val {
+        font-size: 1.7rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    .sp-btn {
+        padding: 14px 5px;
+        font-size: 0.85rem;
+        border-radius: 25px; /* Pill shape for mobile */
+    }
+
+    /* Toggle visibility of specific elements */
+    .hide-mobile {
+        display: none;
+    }
+
+    .show-mobile {
+        display: inline;
+    }
+}

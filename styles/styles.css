@@ -1,0 +1,861 @@
+/* 1. CSS Variables & Design Tokens */
+:root {
+  /* Colors */
+  --color-primary: #28a745;
+  --color-primary-light: #92e3a9;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-text-main: #333333;
+  --color-text-muted: #666666;
+  --color-bg-page: #ffffff;
+  --color-border: #eaeaea;
+  --color-border-dark: #333333;
+  --color-header-bg: #203527;
+  --color-header-border: #3a4f3f;
+  --color-header-accent: #c7e9b9;
+  --color-footer-bg: #27362a; /* Dark green */
+  --color-footer-text: #b5cfa5; /* Pale green text */
+  --color-footer-hover: #ffffff;
+
+  /* Shared aliases used by the section stylesheets */
+  --text-primary: var(--color-text-main);
+  --text-secondary: var(--color-text-muted);
+  --border-color: var(--color-border);
+  --border-card: #e5ebe6;
+  --bg-light-green: #f3f9f4;
+  --bg-light-blue: #f0f7f9;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-family: var(--font-sans);
+  --sp-stay-color: #4cbdd6;
+  --sp-play-color: #9cd683;
+  --sp-text-main: #111111;
+  --sp-border-color: #e2e8f0;
+  --primary-blue: #76cdda;
+
+  /* Typography */
+
+  /* Spacing & Layout */
+  --radius-card: 8px;
+  --radius-pill: 50px;
+  --max-width-desktop: 1100px;
+}
+
+/* 
+   2. Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%; /* Keeps the page from shifting left/right */
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-page);
+  margin: 0; /* Removes default browser spacing */
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Accessible Focus States */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Desktop-Focused Container */
+.container {
+  width: 100%;
+  max-width: var(--max-width-desktop);
+  margin: 0 auto;
+  padding: 0 1.25rem; /* Desktop padding tuned to the reference layout */
+}
+
+/* 
+   3. Buttons & Inputs */
+.button {
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button--primary {
+  background-color: var(--color-header-accent);
+  color: #203527;
+}
+
+.button--primary:hover {
+  background-color: #b7dfaa;
+}
+
+.button--pill {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+}
+
+/* Icon Buttons */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.btn-icon:hover {
+  transform: scale(1.05);
+}
+
+.btn-icon--solid {
+  background-color: var(--color-header-accent);
+  color: #203527;
+  border-radius: 50%;
+}
+
+.btn-icon--outline {
+  border: 1.5px solid var(--color-header-accent);
+  color: var(--color-header-accent);
+  border-radius: 50%;
+}
+
+.btn-icon--menu {
+  color: var(--color-header-accent);
+  width: 32px;
+}
+
+/* ==========================================================================
+   4. Header & Navigation (Desktop First)
+   ========================================================================== */
+.header {
+  width: 100%;
+  background-color: var(--color-header-bg);
+  border-bottom: 1px solid var(--color-header-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.header__brand {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header__logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-white);
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Desktop Menu Links */
+.header__menu {
+  display: flex;
+  list-style: none;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.header__link {
+  text-decoration: none;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.header__link:hover {
+  color: var(--color-primary);
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.25rem; /* Controls the spacing between the text links and the buttons */
+}
+
+/* Header Actions */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.header__actions-extended {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.header__actions-compact,
+.btn-icon--menu {
+  display: none; /* Hidden on desktop */
+}
+
+/* Search Box */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper__input {
+  background-color: transparent;
+  color: var(--color-white);
+  padding: 0.6rem 2.4rem 0.6rem 1rem;
+  border: 1px solid var(--color-header-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 180px;
+}
+
+.search-wrapper__input::placeholder {
+  color: var(--color-header-accent);
+  opacity: 1;
+}
+
+.search-wrapper__input:focus {
+  border-color: var(--color-header-accent);
+}
+
+.search-wrapper__icon {
+  position: absolute;
+  right: 12px;
+  color: var(--color-header-accent);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   5. Main Content & Layout Blocks
+   ========================================================================== */
+
+/* Accommodations Split Layout (Desktop Default) */
+.booking-portal {
+  padding: 3rem 0;
+}
+
+.booking-portal__header {
+  margin-bottom: 2rem;
+}
+
+.booking-portal__filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Master-Detail Layout */
+.booking-portal__layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Grid Column (60% width on desktop) */
+.booking-portal__content {
+  flex: 1 1 60%;
+}
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns within the 60% area */
+  gap: 1.5rem;
+}
+
+/* Map Column (40% width on desktop, Sticky) */
+.booking-portal__map {
+  flex: 1 1 40%;
+  position: sticky;
+  top: 100px; /* Offset for navbar */
+  height: calc(100vh - 120px);
+  background: var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* Property Cards */
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card__title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card__price {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.card__actions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card__actions button {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+/* Weather Section */
+.weather {
+  padding: 3rem 0;
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   Footer Base (Desktop First)
+   ========================================================================== */
+.footer {
+  background-color: var(--color-footer-bg);
+  /* Ensure you have an overlay-friendly background image in your assets folder */
+  background-image:
+    linear-gradient(rgba(39, 54, 42, 0.85), rgba(39, 54, 42, 0.85)),
+    url("../assets/images/footer1.jpeg");
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 0;
+  color: var(--color-footer-text);
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+/* ==========================================================================
+   Left Navigation
+   ========================================================================== */
+.footer__nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+  flex: 1; /* Takes up remaining space */
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: var(--color-footer-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: var(--color-footer-hover);
+}
+
+/* ==========================================================================
+   Right Aside (Controls & Branding)
+   ========================================================================== */
+.footer__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns content to the right edge */
+  gap: 2rem;
+  min-width: 350px;
+}
+
+/* Socials */
+.footer__socials {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__social-link {
+  color: var(--color-footer-text);
+  transition: color 0.2s ease;
+}
+
+.footer__social-link:hover {
+  color: var(--color-footer-hover);
+}
+
+/* Select Dropdowns */
+.footer__dropdowns {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.footer__select-wrapper {
+  position: relative;
+}
+
+.footer__select {
+  appearance: none;
+  background-color: transparent;
+  color: var(--color-footer-text);
+  border: 1px solid var(--color-footer-text);
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+.footer__select:focus {
+  border-color: var(--color-footer-hover);
+}
+
+/* Add custom arrow using background-image */
+.footer__select-wrapper::after {
+  content: "▼";
+  font-size: 0.6rem;
+  color: var(--color-footer-text);
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Branding */
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--color-footer-hover); /* Brighter for the logo */
+}
+
+.footer__brand-divider {
+  width: 1px;
+  height: 40px;
+  background-color: var(--color-footer-text);
+  opacity: 0.5;
+}
+
+.footer__brand-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.footer__brand-text strong {
+  color: var(--color-footer-hover);
+}
+
+.footer__copyright {
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Responsive Behavior (Desktop-First)
+   ========================================================================== */
+
+/* Tablet View */
+@media (max-width: 1199px) {
+  .footer__container {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .footer__aside {
+    align-items: flex-start; /* Move alignment to left for stacked view */
+    width: 100%;
+  }
+
+  .footer__dropdowns {
+    justify-content: flex-start;
+  }
+}
+
+/* Small Tablet / Mobile Wide */
+@media (max-width: 899px) {
+  .footer__nav {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 4 */
+    width: 100%;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 599px) {
+  .footer__nav {
+    grid-template-columns: 1fr; /* Single column */
+  }
+
+  .footer__dropdowns {
+    flex-direction: column; /* Stack dropdowns vertically */
+    width: 100%;
+  }
+
+  .footer__select {
+    width: 100%; /* Full width dropdowns on mobile */
+  }
+}
+
+/* ==========================================================================
+   6. Responsive Breakpoints (Scaling Down)
+   ========================================================================== */
+
+/* Tablet / Small Desktop View (Screens under 1200px) */
+@media (max-width: 1199px) {
+  .container {
+    padding: 0 2rem; /* Reduce container padding */
+  }
+
+  /* Navbar Adjustments */
+  .header__menu {
+    display: none; /* Hide text links to save space */
+  }
+
+  .btn-icon--menu {
+    display: flex; /* Show hamburger menu */
+  }
+
+  .header__brand {
+    justify-content: left;
+  }
+
+  .header__right {
+    justify-content: flex-end;
+  }
+
+  /* Reduce property grid to 1 column inside the split layout */
+  /* Reduce weather grid */
+  .weather-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile / Small Tablet View (Screens under 900px) */
+@media (max-width: 899px) {
+  .header {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+  }
+  /* Navbar Actions Swap */
+  .header__actions-extended {
+    display: none; /* Hide full search and pill button */
+  }
+  body {
+    overflow-x: hidden;
+  }
+
+  .header__actions-compact {
+    display: flex; /* Show solid/outline icon buttons */
+    gap: 0.75rem;
+  }
+
+  /* Collapse Split Layout */
+  .booking-portal__layout {
+    flex-direction: column-reverse; /* Stacks map above or below grid */
+  }
+
+  .booking-portal__content,
+  .booking-portal__map {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .booking-portal__map {
+    position: relative;
+    top: 0;
+    height: 350px; /* Fixed height for map on mobile */
+    margin-bottom: 2rem;
+  }
+
+  /* Expand property grid back to 2 columns if space allows on wide mobile, or keep 1 */
+  .property-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* =========================================
+   Course Features Section
+   ========================================= */
+.course-features-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  font-family: var(
+    --font-sans,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif
+  );
+}
+
+.course-features-section h2 {
+  font-size: 1.8rem;
+  color: #1a2b22; /* Dark green/black */
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.course-features-grid {
+  display: grid;
+  /* Sets the right card to be significantly wider than the left card */
+  grid-template-columns: 1fr 1.8fr;
+  gap: 20px;
+}
+
+.course-feature-card {
+  background-color: #f7fcf9; /* Very light mint background */
+  border: 1px solid #dce8df; /* Subtle green border */
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.course-feature-card h3 {
+  font-size: 1.4rem;
+  color: #1a2b22;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.feature-subsection h4 {
+  font-size: 1rem;
+  color: #1a2b22;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.course-feature-card ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #555; /* Dark gray for readability */
+}
+
+.course-feature-card li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.course-feature-card li:last-child {
+  margin-bottom: 0;
+}
+
+.feature-divider {
+  border: 0;
+  border-top: 1px solid #dce8df;
+  margin: 25px 0;
+}
+
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
+/* Tablet view remains side-by-side like desktop. 
+   Apply stacking and spacing adjustments ONLY for mobile screens. */
+@media (max-width: 767px) {
+  .course-features-grid {
+    grid-template-columns: 1fr; /* Stacks the cards vertically */
+    gap: 15px;
+  }
+
+  .course-features-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .course-feature-card {
+    padding: 20px; /* Reduces inner padding to save mobile screen space */
+  }
+
+  .course-feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .course-feature-card ul {
+    padding-left: 15px;
+  }
+
+  .feature-divider {
+    margin: 20px 0;
+  }
+}
+
+/* Small Mobile View (Screens under 600px) */
+@media (max-width: 599px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .weather-grid {
+    grid-template-columns: 1fr; /* Stack weather cards single file */
+  }
+
+  .card__actions {
+    flex-direction: column; /* Stack buttons inside cards */
+  }
+}
+
+@media (max-width: 768px) {
+  .header,
+  .footer {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Add ALL your main section wrapper classes here */
+  .property-listing,
+  .perfect-stay-section,
+  .guest-reviews-section,
+  .stay-play-booking,
+  .golf-highlights-wrapper,
+  .course-features-section,
+  .weather-section,
+  .other-courses-section {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    /* Ensure grids inside them don't break the container */
+    overflow-x: hidden;
+    min-width: 0;
+  }
+
+  /* Keep your carousels scrollable inside the constrained wrappers */
+  .property-grid,
+  .reviews-grid,
+  .gallery-track,
+  .highlights-cards,
+  .highlights-features,
+  .course-features-grid,
+  .weather-grid,
+  .other-courses-grid {
+    overflow-x: auto;
+    padding-bottom: 15px;
+    min-width: 0;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}

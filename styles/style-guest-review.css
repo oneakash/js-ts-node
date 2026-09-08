@@ -1,0 +1,203 @@
+/* =========================================
+   Guest Reviews Section
+   ========================================= */
+.guest-reviews-section {
+  max-width: 1200px;
+  margin: 60px auto 40px auto;
+  font-family: var(--font-sans, var(--font-family));
+}
+
+.guest-reviews-section h2 {
+  font-size: 1.6rem;
+  color: var(--text-primary, var(--color-text-main));
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.review-card {
+  border: 1px solid var(--border-card, var(--color-border));
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.review-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary, var(--color-text-muted));
+  font-weight: 600;
+}
+
+.review-stars {
+  color: #f5a623; /* Gold star color */
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.star-gray {
+  color: #e0e0e0;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: var(--text-primary, var(--color-text-main));
+  line-height: 1.5;
+  margin: 0 0 25px 0;
+  flex-grow: 1; /* Pushes author section to the bottom */
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author-name {
+  font-size: 0.8rem;
+  color: var(--text-secondary, var(--color-text-muted));
+  font-weight: 500;
+}
+
+/* =========================================
+   Responsive Adjustments
+   ========================================= */
+@media (max-width: 900px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   Desktop Adjustments (Hide Dots)
+   ========================================= */
+.review-carousel-dots {
+  display: none; /* Hidden on desktop */
+}
+
+/* =========================================
+   MOBILE VIEW
+   ========================================= */
+@media (max-width: 768px) {
+  /* Special Packages Mobile Styling */
+  .special-packages-banner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 15px;
+    border-top: none; /* Remove desktop top border */
+    border-bottom: 1px solid #dce8df; /* Add mobile bottom border */
+    margin-bottom: 30px;
+  }
+
+  .special-packages-banner strong {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .special-packages-banner p {
+    line-height: 1.4;
+    font-size: 1rem;
+  }
+
+  /* Guest Reviews Mobile Styling */
+  .guest-reviews-section h2 {
+    text-align: center;
+    line-height: 1.3;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #1a2b22; /* Dark green */
+  }
+
+  /* Transform Grid into Carousel */
+  .reviews-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    gap: 20px;
+    padding-bottom: 10px;
+  }
+
+  .reviews-grid::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+
+  /* Card adjustments for centering */
+  .review-card {
+    flex: 0 0 100%; /* Force card to take full width of screen */
+    scroll-snap-align: center;
+    text-align: center;
+    align-items: center;
+    border: 1px solid #dce8df; /* Match image border color */
+    padding: 35px 25px;
+  }
+
+  .review-header {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .review-date {
+    color: #999;
+  }
+
+  .review-text {
+    font-weight: 600; /* Bolder text for mobile */
+    color: #444;
+  }
+
+  .review-author {
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  /* Show and style carousel dots */
+  .review-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .review-carousel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: transparent;
+  }
+
+  .review-carousel-dots .dot.active {
+    background-color: #a4e58b; /* Light green */
+    border-color: #a4e58b;
+  }
+}
