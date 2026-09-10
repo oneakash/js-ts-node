@@ -4,3 +4,4 @@ cd js-ts-node
 npm install
 npm run dev
 ```
+Server running on http://localhost:3000
