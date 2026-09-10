@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/style-highlights.css" />
     <link rel="stylesheet" href="styles/style-guest-review.css" />
     <link rel="stylesheet" href="styles/stay-play.css" />
+    <link rel="stylesheet" href="styles/gallery.css" />
   </head>
   <body>
     <!-- <script type="module" src="./js/main.js"></script> -->
@@ -148,7 +149,9 @@
               </div>
             </div>
 
-            <button class="view-images-btn">VIEW ALL 20 IMAGES</button>
+            <button class="view-images-btn" type="button">
+  VIEW ALL 10 IMAGES
+</button>
 
             <div class="carousel-dots">
               <span class="dot active"></span>
@@ -262,20 +265,34 @@
             </article>
           </section>
 
-          <section class="description">
-            <p>
-              Eagle Creek Golf Club combines scenic views with a
-              championship-level course that offers a memorable golfing
-              experience. Nestled amidst lush landscapes and serene water
-              features, this course is known for its challenging design and
-              exceptional playing conditions, making it a must-play destination
-              for golf enthusiasts.
-              <a href="#" class="read-more">
-                READ MORE
-                <img src="assets/icons/down.svg" width="20" height="20" />
-              </a>
-            </p>
-          </section>
+<section class="description">
+  <p class="description-text">
+    Eagle Creek Golf Club combines scenic views with a championship-level
+    course that offers a memorable golfing experience. Nestled amidst lush
+    landscapes and serene water features, this course is known for its
+    challenging design and exceptional playing conditions, making it a
+    must-play destination for golf enthusiasts.
+
+    <span class="description-more">
+      The course provides a variety of challenging holes suitable for both
+      experienced golfers and players looking to improve their game. With
+      beautiful surroundings, well-maintained fairways, and excellent
+      facilities, Eagle Creek Golf Club provides an enjoyable experience
+      throughout the entire stay.
+    </span>
+
+    <button type="button" class="read-more">
+      READ MORE
+      <img src="assets/icons/down.svg" width="20" height="20" alt="" />
+    </button>
+
+    <button type="button" class="collapse">
+      COLLAPSE
+      <img src="assets/icons/up.svg" width="20" height="20" alt="" />
+    </button>
+  </p>
+</section>
+
 
           <section class="at-a-glance">
             <div class="glance-title">
@@ -1708,6 +1725,63 @@
         </aside>
       </div>
     </footer>
+<div class="gallery-modal" id="gallery-modal" aria-hidden="true">
+  <div class="gallery-modal__content" role="dialog" aria-modal="true">
+
+    <button
+      class="gallery-modal__close"
+      id="gallery-close"
+      type="button"
+      aria-label="Close gallery"
+    >
+      &times;
+    </button>
+
+    <!-- Desktop scrollable gallery -->
+    <div class="gallery-modal__desktop" id="gallery-desktop"></div>
+
+    <!-- Tablet / Mobile slider -->
+    <div class="gallery-modal__mobile">
+
+      <div class="gallery-slider">
+        <div
+          class="gallery-slider__track"
+          id="gallery-slider-track"
+        ></div>
+      </div>
+
+      <button
+        class="gallery-arrow gallery-arrow--prev"
+        id="gallery-prev"
+        type="button"
+        aria-label="Previous image"
+      >
+        &#10094;
+      </button>
+
+      <button
+        class="gallery-arrow gallery-arrow--next"
+        id="gallery-next"
+        type="button"
+        aria-label="Next image"
+      >
+        &#10095;
+      </button>
+
+      <div class="gallery-counter" id="gallery-counter">
+        1 / 10
+      </div>
+
+      <div
+        class="gallery-dots"
+        id="gallery-dots"
+        aria-label="Gallery navigation"
+      ></div>
+
+    </div>
+  </div>
+</div>
+
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>

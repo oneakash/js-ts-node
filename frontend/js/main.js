@@ -1,5 +1,6 @@
 import { getProperties } from "./api/property.api.js";
 import { renderProperties } from "./components/property-list.js";
+import "./components/gallery.js";
 
 const propertyContainer = document.querySelector("#property-list");
 const propertySort = document.querySelector("#property-sort");
@@ -28,6 +29,19 @@ async function loadProperties(type = "most-popular") {
     `;
   }
 }
+
+const description = document.querySelector(".description");
+const readMoreButton = document.querySelector(".read-more");
+const collapseButton = document.querySelector(".collapse");
+
+readMoreButton.addEventListener("click", () => {
+  description.classList.add("expanded");
+});
+
+collapseButton.addEventListener("click", () => {
+  description.classList.remove("expanded");
+});
+
 
 // Load Most Popular when page starts
 loadProperties();
